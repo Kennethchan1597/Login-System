@@ -5,7 +5,9 @@
   - Connected to a **MySQL** database
   - Backend handles **password encryption**
   - Sends automatic registration emails via **Gmail SMTP**
-  - Frontend built with **React.js**
+  
+- 📈 **Front-end Stack tech**
+  - Built with **React.js**
   - Styled using **Tailwind CSS and Shadcn UI**
   - **Axios** used for API calls
   - **React Router** for page navigation

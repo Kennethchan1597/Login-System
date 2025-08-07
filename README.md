@@ -12,7 +12,7 @@
 
 ## Architecture Diagram
 
-<p align="center">
+<p>
   <img src="images/System-Architecture.png" alt="System Architecture" width="400" />
   <img src="images/System-Flow-Chart.png" alt="System Flow Chart" width="400" />
 </p>

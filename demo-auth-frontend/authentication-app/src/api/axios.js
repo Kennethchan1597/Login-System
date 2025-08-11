@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const authAxios = axios.create({
-  baseURL: "http://localhost:8091/auth"
+  baseURL: "http://localhost:8090/auth"
 });
 
 // Add token to every request

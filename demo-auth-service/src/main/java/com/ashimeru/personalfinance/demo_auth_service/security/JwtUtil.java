@@ -1,18 +1,24 @@
 package com.ashimeru.personalfinance.demo_auth_service.security;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import com.ashimeru.personalfinance.demo_auth_service.dto.ErrorDto.Code;
 import com.ashimeru.personalfinance.demo_auth_service.dto.UserDto;
 import com.ashimeru.personalfinance.demo_auth_service.exception.AppException;
 import com.ashimeru.personalfinance.demo_auth_service.service.CustomUserDetailsService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -43,10 +49,18 @@ public class JwtUtil {
   }
 
   public String extractUsername(String token) {
-    if(token == null)
+    if (token == null || !this.isTokenValid(token))
     throw new AppException(Code.TOKEN_INVALID);
     return Jwts.parser().setSigningKey(this.SECRET_KEY).parseClaimsJws(token)
         .getBody().getSubject();
+  }
+
+  public String extractRole(String token) {
+    if (token == null || !this.isTokenValid(token))
+    throw new AppException(Code.TOKEN_INVALID);
+    Claims claims = Jwts.parser().setSigningKey(this.SECRET_KEY).parseClaimsJws(token)
+        .getBody();
+    return claims.get("role", String.class);
   }
 
   public boolean isTokenValid(String token) {
@@ -61,12 +75,18 @@ public class JwtUtil {
   }
 
   public Authentication validate(String token) {
-    if (token == null)
-      throw new AppException(Code.TOKEN_INVALID);
-    if(!this.isTokenValid(token))
+    if (token == null || !this.isTokenValid(token))
       throw new AppException(Code.TOKEN_INVALID);
       String username = this.extractUsername(token);
-      UserDetails user = this.customUserDetailsService.loadUserByUsername(username);
+      String role = this.extractRole(token);
+        List<GrantedAuthority> authorities = Collections.singletonList(
+        new SimpleGrantedAuthority("ROLE_" + role)
+    );
+      UserDetails user = User.builder()
+      .username(username)
+      .password("")  // no password needed here
+      .authorities(authorities)
+      .build();
       return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
     }
 

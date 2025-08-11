@@ -38,6 +38,7 @@ public class AuthServiceImpl implements AuthService {
   private VerificationTokenService verificationTokenService;
   @Autowired
   private EmailService emailService;
+  
 
   @Override
   public Optional<UserEntity> findByUserName(String name) {
@@ -61,12 +62,12 @@ public class AuthServiceImpl implements AuthService {
     if (this.findByUserName(signUpDto.getUserName()).isPresent())
       throw new AppException(ErrorDto.Code.USER_EXISTED);
     UserEntity entity = this.entityMapper.map(signUpDto);
-    this.saveUser(entity);
     String token = UUID.randomUUID().toString();
-    this.verificationTokenService.saveTokenForUser(token, entity);
-    String url = "http://localhost:8091/auth/verify?token=" + token;
+    String url = "http://localhost:8090/auth/verify?token=" + token;
     try {
       this.emailService.sendVerificationEmail(entity.getEmail(), url);
+      this.saveUser(entity);
+      this.verificationTokenService.saveTokenForUser(token, entity);
     } catch (MessagingException e) {
       throw new AppException(Code.EMAIL_SEND_FAILED);
     }

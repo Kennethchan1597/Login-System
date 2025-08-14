@@ -44,7 +44,7 @@ function LoginForm() {
             onChange={c => (setUsername(c.target.value))} required 
             className = "text" autoComplete='off' />
             <Label htmlFor="user" className="label">Username</Label>
-            <FaUser className="fromIcon" style={{top: "31%"}} />
+            <FaUser className="fromIcon" style={{top: "36%"}} />
         </div>
         <br />
         <div className="grid w-full max-w-sm items-center gap-2">
@@ -53,7 +53,7 @@ function LoginForm() {
             onChange={c => (setPassword(c.target.value))} required 
             className = "text" autoComplete='off' />
             <Label htmlFor="pw" className="label">Password</Label>
-            <RiLockPasswordFill className="fromIcon" style={{top: "54%"}} />
+            <RiLockPasswordFill className="fromIcon" style={{top: "53%"}} />
         </div><br />
         <Button className="formButton" variant="outline" type="submit">Login</Button>
       </form>

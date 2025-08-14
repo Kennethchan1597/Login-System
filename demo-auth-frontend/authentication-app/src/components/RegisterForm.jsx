@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import publicInstance from "../api/publicAxios";
+import '../styles/AuthFormStyle.css';
 
 function RegisterForm() {
 
@@ -39,26 +40,29 @@ function RegisterForm() {
     <>
       <form className="form" id="register" onSubmit={handleRegister}>
       <div className="grid w-full max-w-sm items-center gap-2">
-          <Label htmlFor="text"></Label>
-          <Input type="text" id="text" placeholder="username" 
+          <Input type="text" id="text"  
                  value={username}  
-                 onChange={c => (setUsername(c.target.value))} required />
-                 <FaUser className="fromIcon" style={{top: "25%"}} />
+                 onChange={c => (setUsername(c.target.value))} required 
+                 className = "text" autoComplete='off' />
+                 <Label htmlFor="text" className="label">Username</Label>
+                 <FaUser className="fromIcon" style={{top: "14%"}} />
         </div>
         <br />
         <div className="grid w-full max-w-sm items-center gap-2">
-          <Label htmlFor="password"></Label>
-          <Input type="password" id="password" placeholder="password" 
+          <Input type="password" id="password"  
                  value={password}  
-                 onChange={c => (setPassword(c.target.value))} required />
-                 <RiLockPasswordFill className="fromIcon" style={{top: "42%"}} />
+                 onChange={c => (setPassword(c.target.value))} required 
+                 className = "text" autoComplete='off' />
+                 <Label htmlFor="password" className="label">Password</Label>
+                 <RiLockPasswordFill className="fromIcon" style={{top: "38%"}} />
         </div>
         <br />
         <div className="grid w-full max-w-sm items-center gap-2">
-          <Label htmlFor="email"></Label>
-          <Input type="email" id="email" placeholder="email" 
+          <Input type="email" id="email"  
                  value={email}  
-                 onChange={c => (setEmail(c.target.value))} required />
+                 onChange={c => (setEmail(c.target.value))} required 
+                 className = "text" />
+                 <Label htmlFor="email" className="label">Email</Label>
         </div><br />
         <Button className="formButton" variant = "outline" type="submit">Register</Button>
       </form>

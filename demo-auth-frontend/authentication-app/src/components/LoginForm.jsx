@@ -7,6 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import publicInstance from "../api/publicAxios.js";
 import { useAuth } from "../auth/Authentication";
+import '../styles/AuthFormStyle.css';
 
 function LoginForm() {
 
@@ -38,19 +39,21 @@ function LoginForm() {
     <>
       <form className="form" onSubmit={handleLogin}><br />
         <div className="grid w-full max-w-sm items-center gap-2">
-          <Label htmlFor="user"></Label>
-          <Input type="text" id="user" placeholder="username"
+          <Input type="text" id="user"
             value={username}
-            onChange={c => (setUsername(c.target.value))} required />
-            <FaUser className="fromIcon" style={{top: "36%"}} />
+            onChange={c => (setUsername(c.target.value))} required 
+            className = "text" autoComplete='off' />
+            <Label htmlFor="user" className="label">Username</Label>
+            <FaUser className="fromIcon" style={{top: "31%"}} />
         </div>
         <br />
         <div className="grid w-full max-w-sm items-center gap-2">
-          <Label htmlFor="pw"></Label>
-          <Input type="password" id="pw" placeholder="password"
+          <Input type="password" id="pw"
             value={password}
-            onChange={c => (setPassword(c.target.value))} required />
-            <RiLockPasswordFill className="fromIcon" style={{top: "53%"}} />
+            onChange={c => (setPassword(c.target.value))} required 
+            className = "text" autoComplete='off' />
+            <Label htmlFor="pw" className="label">Password</Label>
+            <RiLockPasswordFill className="fromIcon" style={{top: "54%"}} />
         </div><br />
         <Button className="formButton" variant="outline" type="submit">Login</Button>
       </form>

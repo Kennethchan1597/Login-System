@@ -19,7 +19,7 @@ const AuthForm = () => {
 
         {isLogin ? <LoginForm /> : <RegisterForm />}
 
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-6 p-3">
           <FormToggleButton
             isLogin={isLogin}
             onClick={toggleForm}

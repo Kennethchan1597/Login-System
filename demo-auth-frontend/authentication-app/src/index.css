@@ -120,13 +120,6 @@
   }
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 250px;
-}
 
 .background {
   position: fixed;
@@ -162,10 +155,11 @@ input {
   color: white;
 }
 
-.fromIcon {
+.message {
   color: white;
-  position: absolute;
-  right: 40px;
-  transform: translateY(-50%);
-  pointer-events: none;
+}
+
+.formToggleButton {
+  padding: 50px;
+  color: white;
 }

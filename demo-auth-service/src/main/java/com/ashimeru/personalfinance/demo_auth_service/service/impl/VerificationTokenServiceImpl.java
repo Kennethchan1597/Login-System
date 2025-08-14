@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ashimeru.personalfinance.demo_auth_service.dto.ErrorDto.Code;
+import com.ashimeru.personalfinance.demo_auth_service.dto.ErrorDto;
 import com.ashimeru.personalfinance.demo_auth_service.entity.UserEntity;
 import com.ashimeru.personalfinance.demo_auth_service.entity.VerificationTokenEntity;
 import com.ashimeru.personalfinance.demo_auth_service.exception.AppException;
@@ -34,12 +34,12 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
   @Override
   public UserEntity VerifyUser(String token) {
     VerificationTokenEntity verificationToken = this.findByToken(token)
-    .orElseThrow( () -> new AppException(Code.TOKEN_INVALID));
+    .orElseThrow( () -> new AppException(ErrorDto.Code.TOKEN_INVALID));
     if(verificationToken.isExpired())
-    throw new AppException(Code.TOKEN_EXPIRED);
+    throw new AppException(ErrorDto.Code.TOKEN_EXPIRED);
     UserEntity user = verificationToken.getUser();
     if(user.isVerified())
-    throw new AppException(Code.USER_IS_VERIFIED);
+    throw new AppException(ErrorDto.Code.USER_IS_VERIFIED);
     user.verify();
     return user;
   }

@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import com.ashimeru.personalfinance.demo_auth_service.dto.DtoMapper;
 import com.ashimeru.personalfinance.demo_auth_service.dto.ErrorDto;
-import com.ashimeru.personalfinance.demo_auth_service.dto.ErrorDto.Code;
 import com.ashimeru.personalfinance.demo_auth_service.dto.LoginDto;
 import com.ashimeru.personalfinance.demo_auth_service.dto.SignUpDto;
 import com.ashimeru.personalfinance.demo_auth_service.dto.UserDto;
@@ -58,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public void register(SignUpDto signUpDto) {
     if (this.findByEmail(signUpDto.getEmail()).isPresent())
-      throw new AppException(Code.EMAIL_EXISTED);
+      throw new AppException(ErrorDto.Code.EMAIL_EXISTED);
     if (this.findByUserName(signUpDto.getUserName()).isPresent())
       throw new AppException(ErrorDto.Code.USER_EXISTED);
     UserEntity entity = this.entityMapper.map(signUpDto);
@@ -69,15 +68,15 @@ public class AuthServiceImpl implements AuthService {
       this.saveUser(entity);
       this.verificationTokenService.saveTokenForUser(token, entity);
     } catch (MessagingException e) {
-      throw new AppException(Code.EMAIL_SEND_FAILED);
+      throw new AppException(ErrorDto.Code.EMAIL_SEND_FAILED);
     }
   }
 
   @Override
   public UserDto login(LoginDto loginDto) {
-    this.findByUserName(loginDto.getUsername()).orElseThrow(() -> new AppException(Code.USER_NOT_FOUND));
+    this.findByUserName(loginDto.getUsername()).orElseThrow(() -> new AppException(ErrorDto.Code.USER_NOT_FOUND));
     if (loginDto.getPassword() == null || loginDto.getPassword().isEmpty())
-      throw new AppException(Code.INVALID_PASSWORD);
+      throw new AppException(ErrorDto.Code.INVALID_PASSWORD);
     try {
       Authentication auth = this.authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
@@ -86,7 +85,7 @@ public class AuthServiceImpl implements AuthService {
       UserEntity user = userd.getUserEntity();
       return this.dtoMapper.map(user);
     } catch (BadCredentialsException e) {
-      throw new AppException(Code.INVALID_PASSWORD);
+      throw new AppException(ErrorDto.Code.INVALID_PASSWORD);
     }
   }
 

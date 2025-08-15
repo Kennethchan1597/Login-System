@@ -98,7 +98,7 @@ function RegisterForm() {
             value={email}
             onChange={c => (setEmail(c.target.value))} required
             className="text" />
-          <Label htmlFor="email" className="label">Email</Label>
+          <Label htmlFor="email" className="label" autoComplete="off">Email</Label>
         </div><br />
         <Button className="formButton" variant="outline" type="submit">Register</Button>
       </form>

@@ -30,7 +30,7 @@ public class AppConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf(c -> c.disable())
-        .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll()
+        .authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
             .anyRequest().authenticated())
         .sessionManagement(session -> session
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

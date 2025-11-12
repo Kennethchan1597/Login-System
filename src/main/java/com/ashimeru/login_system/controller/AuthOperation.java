@@ -14,7 +14,7 @@ import com.ashimeru.login_system.dto.SignUpDto;
 import com.ashimeru.login_system.dto.VerifyOtpDto;
 import jakarta.validation.Valid;
 
-@RequestMapping(value = "/auth")
+@RequestMapping(value = "/api/auth")
 public interface AuthOperation {
   
   @PostMapping(value = "/register")

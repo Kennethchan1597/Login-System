@@ -37,3 +37,6 @@ build/
 
 ### Demonstration Images ###
 images/
+
+### oauth
+/login_system/src/main/java/com/ashimeru/login_system/security/oauth/

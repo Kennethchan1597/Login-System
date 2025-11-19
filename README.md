@@ -14,9 +14,9 @@
 ## Architecture Diagram
 
 <p align="center">
-  <img src="./images/System-Architecture.png" alt="System Architecture" width="100%" />
+  <img src="./images/System-Architecture.png" alt="System Architecture" />
 </p>
 <p align="center">
-  <img src="./images/System-Flow-Chart.png" alt="System Flow Chart" width="100%" />
+  <img src="./images/System-Flow-Chart.png" alt="System Flow Chart" />
 </p>
 

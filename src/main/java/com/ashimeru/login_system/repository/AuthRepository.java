@@ -9,4 +9,6 @@ import com.ashimeru.login_system.entity.UserEntity;
 public interface AuthRepository extends JpaRepository<UserEntity, Long>{
   Optional<UserEntity> findByUserName(String userName);
   Optional<UserEntity> findByEmail(String email);
+  Optional<UserEntity> findByAppleId(String appleId);
+  Optional<UserEntity> findByGoogleId(String googleId);
 }

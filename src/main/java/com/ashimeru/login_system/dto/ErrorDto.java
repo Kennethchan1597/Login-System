@@ -26,7 +26,8 @@ public class ErrorDto {
     EMAIL_SEND_FAILED(6, "Failed to send verification email", HttpStatus.BAD_REQUEST),
     USER_IS_VERIFIED(7, "User is already verified", HttpStatus.CONFLICT),
     EMAIL_EXISTED(8, "Email is already registered", HttpStatus.CONFLICT),
-    WRONG_PASSWORD(9, "Wrong Password", HttpStatus.UNAUTHORIZED);
+    WRONG_PASSWORD(9, "Wrong Password", HttpStatus.UNAUTHORIZED),
+    LOGIN_ERROR(10, "Login failed", HttpStatus.UNAUTHORIZED);
 
     private final HttpStatus httpStatus;
     private final int code;

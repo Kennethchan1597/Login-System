@@ -1,6 +1,8 @@
 package com.ashimeru.login_system.service;
 
 import java.util.Optional;
+import com.ashimeru.login_system.dto.ApplePayload;
+import com.ashimeru.login_system.dto.GooglePayload;
 import com.ashimeru.login_system.dto.LoginDto;
 import com.ashimeru.login_system.dto.SignUpDto;
 import com.ashimeru.login_system.dto.UserDto;
@@ -17,6 +19,8 @@ public interface AuthService {
 
   UserDto login(LoginDto loginDto);
 
-  
+  UserDto loginWithApple(ApplePayload payload) throws Exception;
+
+  UserDto loginWithGoogle(GooglePayload payload);
 
 }

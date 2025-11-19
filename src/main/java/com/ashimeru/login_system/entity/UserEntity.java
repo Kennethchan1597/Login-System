@@ -30,6 +30,8 @@ public class UserEntity {
   @Column(unique = true, name = "username")
   @JsonProperty(value = "username")
   private String userName;
+  private String appleId;
+  private String googleId;
   private String password;
   private String email;
   @Enumerated(EnumType.STRING)

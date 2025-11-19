@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.ashimeru.login_system.dto.ApplePayload;
 import com.ashimeru.login_system.dto.AuthResponseDto;
+import com.ashimeru.login_system.dto.GooglePayload;
 import com.ashimeru.login_system.dto.LoginDto;
 import com.ashimeru.login_system.dto.PasswordForgotDto;
 import com.ashimeru.login_system.dto.PasswordResetDto;
@@ -22,6 +24,12 @@ public interface AuthOperation {
 
   @PostMapping(value = "/login")
   ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto login);
+
+  @PostMapping(value = "/login/apple")
+  ResponseEntity<AuthResponseDto> loginWithApple(@RequestBody ApplePayload payload) throws Exception;
+
+  @PostMapping(value = "/login/google")
+  ResponseEntity<AuthResponseDto> loginWithGoogle(@RequestBody GooglePayload payload);
 
   @GetMapping(value = "/verify")
   ResponseEntity<String> verifyUser(@RequestParam String token);

@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import com.ashimeru.login_system.controller.AuthOperation;
+import com.ashimeru.login_system.dto.ApplePayload;
 import com.ashimeru.login_system.dto.AuthResponseDto;
 import com.ashimeru.login_system.dto.ErrorDto;
+import com.ashimeru.login_system.dto.GooglePayload;
 import com.ashimeru.login_system.dto.LoginDto;
 import com.ashimeru.login_system.dto.PasswordForgotDto;
 import com.ashimeru.login_system.dto.PasswordResetDto;
@@ -37,7 +39,6 @@ public class AuthController implements AuthOperation {
   @Autowired
   private JwtUtil jwtUtil;
 
-
   @Override
   public ResponseEntity<String> register(SignUpDto signUpDto) {
     this.authService.register(signUpDto);
@@ -50,6 +51,29 @@ public class AuthController implements AuthOperation {
     UserDto userDto = this.authService.login(login);
     String token = this.jwtUtil.generateToken(userDto);
     return ResponseEntity.ok().body(new AuthResponseDto(userDto, token));
+  }
+
+  @Override
+  public ResponseEntity<AuthResponseDto> loginWithApple(ApplePayload payload)
+      throws Exception {
+    try {
+      UserDto userDto = authService.loginWithApple(payload);
+      String token = jwtUtil.generateToken(userDto);
+      return ResponseEntity.ok(new AuthResponseDto(userDto, token));
+    } catch (Exception e) {
+      throw new AppException(ErrorDto.Code.LOGIN_ERROR);
+    }
+  }
+
+  @Override
+  public ResponseEntity<AuthResponseDto> loginWithGoogle(GooglePayload payload) {
+    try {
+      UserDto userDto = authService.loginWithGoogle(payload);
+      String token = jwtUtil.generateToken(userDto);
+      return ResponseEntity.ok(new AuthResponseDto(userDto, token));
+    } catch (Exception e) {
+      throw new AppException(ErrorDto.Code.LOGIN_ERROR);
+    }
   }
 
   @Override

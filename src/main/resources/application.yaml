@@ -25,3 +25,11 @@ spring:
 
 jwt:
   secretkey: ${JWT_SECRETKEY}
+
+apple:
+  client:
+    id: ${APPLE_CLIENT_ID}
+
+Google:
+  client: 
+    id: ${GOOGLE_CLIENT_ID}

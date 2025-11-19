@@ -11,14 +11,12 @@
     - Automatically creates or links user accounts on first login
     - Generates JWT tokens after successful OAuth validation
 
-    ashkfdsafdhkjbas
-
 ## Architecture Diagram
 
 <p align="center">
-  <img src="./images/System-Architecture.png" alt="System Architecture" />
+  <img src="./images/System-Architecture.png" alt="System Architecture" width="100%" />
 </p>
 <p align="center">
-  <img src="./images/System-Flow-Chart.png" alt="System Flow Chart"/>
+  <img src="./images/System-Flow-Chart.png" alt="System Flow Chart" width="100%" />
 </p>
 

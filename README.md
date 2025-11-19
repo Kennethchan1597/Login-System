@@ -10,11 +10,12 @@
     - Backend verifies provider tokens **(Apple identity token / Google ID token)**
     - Automatically creates or links user accounts on first login
     - Generates JWT tokens after successful OAuth validation
-    
+
 ## Architecture Diagram
 <p align="center">
-  <img src="images/System-Architecture.png" alt="System Architecture" />
+  <img src="login_system/images/System-Architecture.png" alt="System Architecture" />
 </p>
 <p align="center">
-  <img src="images/System-Flow-Chart.png" alt="System Flow Chart"/>
+  <img src="login_system/images/System-Flow-Chart.png" alt="System Flow Chart"/>
 </p>
+

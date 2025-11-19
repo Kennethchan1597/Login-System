@@ -12,6 +12,7 @@
     - Generates JWT tokens after successful OAuth validation
 
 ## Architecture Diagram
+
 <p align="center">
   <img src="./images/System-Architecture.png" alt="System Architecture" />
 </p>
